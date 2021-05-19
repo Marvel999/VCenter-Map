@@ -1,4 +1,4 @@
-package com.example.vcentremap.utils
+package com.WrapX.vcentremap.utils
 
 data class CentreInfo(
     var centre:String,

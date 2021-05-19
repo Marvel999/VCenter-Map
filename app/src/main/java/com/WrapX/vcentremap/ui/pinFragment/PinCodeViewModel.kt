@@ -1,4 +1,4 @@
-package com.example.vcentremap.ui.pinFragment
+package com.WrapX.vcentremap.ui.pinFragment
 
 import androidx.lifecycle.ViewModel
 

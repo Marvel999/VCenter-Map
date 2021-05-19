@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.vcentremap.ui.login.LoginFragment"
+        android:name="com.WrapX.vcentremap.ui.login.LoginFragment"
         android:label="login_fragment"
         tools:layout="@layout/login_fragment" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/pinCodeFragment"
-        android:name="com.example.vcentremap.ui.pinFragment.PinCodeFragment"
+        android:name="com.WrapX.vcentremap.ui.pinFragment.PinCodeFragment"
         android:label="pin_code_fragment"
         tools:layout="@layout/pin_code_fragment" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.example.vcentremap.ui.pinFragment
+package com.WrapX.vcentremap.ui.pinFragment
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -6,13 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.vcentremap.R
+import com.WrapX.vcentremap.R
 
 class PinCodeFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = PinCodeFragment()
-    }
 
     private lateinit var viewModel: PinCodeViewModel
 
@@ -20,12 +17,17 @@ class PinCodeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.pin_code_fragment, container, false)
+
+        val root=inflater.inflate(R.layout.pin_code_fragment, container, false);
+        return root;
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(PinCodeViewModel::class.java)
+
+
+
         // TODO: Use the ViewModel
     }
 

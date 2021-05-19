@@ -1,4 +1,4 @@
-package com.example.vcentremap
+package com.WrapX.vcentremap
 
 import org.junit.Test
 
