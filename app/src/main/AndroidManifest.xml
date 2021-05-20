@@ -12,13 +12,14 @@
         <activity
             android:name="com.WrapX.vcentremap.AppActivity"
             android:label="@string/title_activity_app" >
-        </activity>
-        <activity android:name="com.WrapX.vcentremap.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name="com.WrapX.vcentremap.MainActivity" >
+
         </activity>
     </application>
 
