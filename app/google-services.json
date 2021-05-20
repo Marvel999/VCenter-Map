@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "265606689887",
+    "project_id": "vcentre-map",
+    "storage_bucket": "vcentre-map.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:265606689887:android:bbf55ada757164744997ea",
+        "android_client_info": {
+          "package_name": "com.WrapX.vcentremap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "265606689887-87q9r1jacm1a871n7fq2ihv0764cv0u9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.WrapX.vcentremap",
+            "certificate_hash": "9038802d290967c31fdfca0843e89d4b3a85cdfb"
+          }
+        },
+        {
+          "client_id": "265606689887-uko0mjriv21a7ss78ic4t8c2kq1f416b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAx427eXtjphd-NUet0sSp2f9cxECPt9mA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "265606689887-uko0mjriv21a7ss78ic4t8c2kq1f416b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
