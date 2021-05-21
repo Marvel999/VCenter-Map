@@ -7,14 +7,14 @@
 
     <fragment
         android:id="@+id/navigation_find_vcentre"
-        android:name="com.WrapX.vcentremap.ui.home.HomeFragment"
+        android:name="com.WrapX.vcentremap.ui.FindVCentre.FindVCentreFragment"
         android:label="@string/title_find_vcentre"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_find_vcentre" />
 
     <fragment
         android:id="@+id/navigation_vcentre"
-        android:name="com.WrapX.vcentremap.ui.dashboard.DashboardFragment"
+        android:name="com.WrapX.vcentremap.ui.VCentre.VCentreFragment"
         android:label="@string/title_vcentre"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_vcentre" />
 
 </navigation>

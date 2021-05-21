@@ -1,4 +1,4 @@
-package com.WrapX.vcentremap.ui.dashboard
+package com.WrapX.vcentremap.ui.FindVCentre
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,12 +8,12 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.WrapX.vcentremap.databinding.FragmentDashboardBinding
+import com.WrapX.vcentremap.databinding.FragmentFindVcentreBinding
 
-class DashboardFragment : Fragment() {
+class FindVCentreFragment : Fragment() {
 
-  private lateinit var dashboardViewModel: DashboardViewModel
-private var _binding: FragmentDashboardBinding? = null
+  private lateinit var homeViewModel: FindVCentreViewModel
+private var _binding: FragmentFindVcentreBinding? = null
   // This property is only valid between onCreateView and
   // onDestroyView.
   private val binding get() = _binding!!
@@ -23,16 +23,13 @@ private var _binding: FragmentDashboardBinding? = null
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View? {
-    dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
+    homeViewModel =
+            ViewModelProvider(this).get(FindVCentreViewModel::class.java)
 
-    _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+    _binding = FragmentFindVcentreBinding.inflate(inflater, container, false)
     val root: View = binding.root
 
-    val textView: TextView = binding.textDashboard
-    dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
-      textView.text = it
-    })
+
     return root
   }
 
