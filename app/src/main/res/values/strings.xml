@@ -11,4 +11,6 @@
     <string name="enter_your_area_pincode">Enter your area Pincode</string>
     <string name="_110040">110040</string>
     <string name="find">Find</string>
+    <string name="vactination_centre_near_you">Vactination Centre Near You</string>
+    <string name="vaccination_centre">vaccination Centre</string>
 </resources>
