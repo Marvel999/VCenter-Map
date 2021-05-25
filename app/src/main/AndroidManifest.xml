@@ -12,7 +12,8 @@
         <activity
             android:name="com.WrapX.vcentremap.AppActivity"
             android:label="@string/title_activity_app"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.VCentreMap">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.WrapX.vcentremap.MainActivity"
+            android:theme="@style/Theme.VCentreMap"
             android:screenOrientation="portrait">
 
         </activity>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,52 +26,60 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/getStart"
+            android:id="@+id/vcPinCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/product_sans_bold"
             android:text="@string/_110040"
+            android:layout_marginTop="15dp"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/vAddress"
-            android:layout_width="wrap_content"
+            android:id="@+id/vcentre"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/product_sans_bold"
             android:maxLines="1"
+            android:ellipsize="end"
             android:text="CGHS Dispensery SEC 16 Rohini"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/getStart" />
+            app:layout_constraintTop_toBottomOf="@+id/vcPinCode" />
 
         <TextView
-            android:id="@+id/address"
-            android:layout_width="wrap_content"
+            android:id="@+id/vcAddress"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:fontFamily="@font/product_sans_bold"
-            android:text=""
+            android:fontFamily="@font/product_sans"
+            android:text="DDA Market, Sec 16 Rohini, North Delhi, Delhi, 110089"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp"
+            android:textSize="14sp"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vAddress" />
+            app:layout_constraintTop_toBottomOf="@+id/vcentre" />
 
 
-        <Button
+        <ImageButton
+            android:id="@+id/navigate_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Navigate"
+            android:src="@drawable/ic_baseline_explore_24"
+            android:padding="10dp"
+            android:background="@drawable/green_card_background"
+            android:tint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/address"
+            app:layout_constraintStart_toEndOf="@+id/vcentre"
             app:layout_constraintTop_toTopOf="parent" />
 
 
