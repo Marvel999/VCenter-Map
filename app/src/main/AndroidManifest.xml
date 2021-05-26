@@ -14,15 +14,17 @@
             android:label="@string/title_activity_app"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.VCentreMap">
+
+        </activity>
+        <activity android:name="com.WrapX.vcentremap.MainActivity"
+            android:theme="@style/Theme.VCentreMap"
+            android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name="com.WrapX.vcentremap.MainActivity"
-            android:theme="@style/Theme.VCentreMap"
-            android:screenOrientation="portrait">
 
         </activity>
     </application>

@@ -5,15 +5,23 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.WrapX.vcentremap.adapter.VCentreAdapter
 import com.WrapX.vcentremap.databinding.FragmentFindVcentreBinding
-import com.WrapX.vcentremap.repo.firebaseDatabase.GetVCentre
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.google.firebase.database.*
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
+
 
 class FindVCentreFragment : Fragment() {
 
@@ -45,6 +53,8 @@ private var _binding: FragmentFindVcentreBinding? = null
         _binding?.recyclerView?.layoutManager= LinearLayoutManager(context)
         _binding?.recyclerView?.adapter=adaptor
 
+        _binding?.header?.userName?.text="Rama"
+
         homeViewModel.vCList.observe({lifecycle}){
             adaptor.submitList(it).let {
                 adaptor.notifyDataSetChanged()
@@ -56,6 +66,7 @@ private var _binding: FragmentFindVcentreBinding? = null
 
 
     }
+
 
 override fun onDestroyView() {
         super.onDestroyView()
