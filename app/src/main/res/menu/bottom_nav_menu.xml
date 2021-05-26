@@ -10,6 +10,10 @@
         android:id="@+id/navigation_vcentre"
         android:icon="@drawable/ic_tab_covid_center"
         android:title="@string/title_vcentre"/>
+    <item
+        android:id="@+id/navigation_slot"
+        android:icon="@drawable/ic_syringe"
+        android:title="@string/title_vaccination_slot"/>
 
 
 

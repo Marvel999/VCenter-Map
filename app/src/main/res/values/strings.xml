@@ -5,12 +5,13 @@
     <string name="tab_text_2">Tab 2</string>
     <string name="title_find_vcentre">Vcentre near you</string>
     <string name="title_vcentre">Vcentre</string>
+    <string name="title_vaccination_slot">vaccination slot</string>
     <string name="continue_with_google">Continue with Google</string>
     <string name="vaccination_center">Vaccination Center</string>
     <string name="pinText">Find Vaccination centre near you Location And Go to your vaccination center using google map. Here entre your Pin Code and Click on "Find Location" Select you vaccination center and Click on "Navigate" Button For Start navigation form your Location.</string>
     <string name="enter_your_area_pincode">Enter your area Pincode</string>
     <string name="_110040">110040</string>
     <string name="find">Find</string>
-    <string name="vactination_centre_near_you">Vactination Centre Near You</string>
-    <string name="vaccination_centre">vaccination Centre</string>
+    <string name="vactination_centre_near_you">Vactination Centre</string>
+    <string name="vaccination_centre">Vaccination Centre</string>
 </resources>

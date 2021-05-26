@@ -16,5 +16,10 @@
         android:name="com.WrapX.vcentremap.ui.VCentre.VCentreFragment"
         android:label="@string/title_vcentre"
         tools:layout="@layout/fragment_vcentre" />
+    <fragment
+        android:id="@+id/navigation_slot"
+        android:name="com.WrapX.vcentremap.ui.FindSlot.FindSlotFragment"
+        android:label="find_slot_fragment"
+        tools:layout="@layout/find_slot_fragment" />
 
 </navigation>
