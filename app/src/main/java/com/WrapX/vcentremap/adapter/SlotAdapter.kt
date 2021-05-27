@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.WrapX.vcentremap.R
-import com.WrapX.vcentremap.databinding.VeccinationSlotLayoutBinding
 import com.WrapX.vcentremap.repo.model.SlotData
 import java.util.*
 

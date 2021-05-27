@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.WrapX.vcentremap.R
 import com.WrapX.vcentremap.repo.model.VCentre
 
-class VCentreAdapter:ListAdapter<VCentre,VCentreAdapter.VCentreViewHolder>(
+class VCentreAdapter(val onnavigationclick:(link:String)->Unit):ListAdapter<VCentre,VCentreAdapter.VCentreViewHolder>(
     object :DiffUtil.ItemCallback<VCentre>() {
 
         override fun areItemsTheSame(oldItem: VCentre, newItem: VCentre): Boolean {
@@ -51,7 +51,7 @@ class VCentreAdapter:ListAdapter<VCentre,VCentreAdapter.VCentreViewHolder>(
         holder.vCName.text=vCentre.vCName
         holder.vcPinCode.text=vCentre.vCPinCode
         holder.navigateBtn.setOnClickListener {
-            Log.e("Link",vCentre.vCMapLink);
+            onnavigationclick(vCentre.vCMapLink)
         }
     }
 

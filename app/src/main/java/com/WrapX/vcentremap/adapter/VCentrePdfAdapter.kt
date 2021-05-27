@@ -6,15 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.WrapX.vcentremap.R
 import com.WrapX.vcentremap.repo.model.VCentrePdf
-import org.w3c.dom.Text
 
-class VCentrePdfAdapter : ListAdapter<VCentrePdf, VCentrePdfAdapter.VCentrePdfViewHolder>(
+class VCentrePdfAdapter(val onReadClicked:(link:String)->Unit) : ListAdapter<VCentrePdf, VCentrePdfAdapter.VCentrePdfViewHolder>(
 
     object : DiffUtil.ItemCallback<VCentrePdf>() {
         override fun areItemsTheSame(oldItem: VCentrePdf, newItem: VCentrePdf): Boolean {
@@ -38,6 +36,7 @@ class VCentrePdfAdapter : ListAdapter<VCentrePdf, VCentrePdfAdapter.VCentrePdfVi
     }
 
 
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -54,6 +53,9 @@ class VCentrePdfAdapter : ListAdapter<VCentrePdf, VCentrePdfAdapter.VCentrePdfVi
     override fun onBindViewHolder(holder: VCentrePdfViewHolder, position: Int) {
         val vCentrePdf = getItem(position);
         holder.stateTv.text = vCentrePdf.stateName
+        holder.readBtn.setOnClickListener {
+            onReadClicked(vCentrePdf.link);
+        }
     }
 }
 

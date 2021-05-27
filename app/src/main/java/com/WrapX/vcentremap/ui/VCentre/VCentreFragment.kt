@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.WrapX.vcentremap.InfoActivity
+import com.WrapX.vcentremap.PdfViewer
 import com.WrapX.vcentremap.adapter.VCentrePdfAdapter
 import com.WrapX.vcentremap.databinding.FragmentFindVcentreBinding
 import com.WrapX.vcentremap.databinding.FragmentVcentreBinding
@@ -56,7 +57,8 @@ private var _binding: FragmentVcentreBinding? = null
             startActivity(intent);
         }
 
-        vCentrePdfAdapter= VCentrePdfAdapter()
+        vCentrePdfAdapter= VCentrePdfAdapter{ openPdf(it)
+        }
         binding.recyclerView.layoutManager= LinearLayoutManager(context);
         binding.recyclerView.adapter=vCentrePdfAdapter
          addDataList()
@@ -86,6 +88,12 @@ private var _binding: FragmentVcentreBinding? = null
         datalist.add(VCentrePdf("Chhattisgarh","https://github.com/Marvel999/Imgur-App/files/6554266/Chhattisgarh.pdf"))
         datalist.add(VCentrePdf("Delhi","https://github.com/Marvel999/Imgur-App/files/6554267/Delhi.pdf"))
 
+    }
+
+    fun openPdf(link:String){
+        val intent=Intent(activity,PdfViewer::class.java)
+        intent.putExtra("link",link)
+        startActivity(intent)
     }
 override fun onDestroyView() {
         super.onDestroyView()

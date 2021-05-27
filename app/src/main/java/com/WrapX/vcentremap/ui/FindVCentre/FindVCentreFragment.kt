@@ -1,6 +1,7 @@
 package com.WrapX.vcentremap.ui.FindVCentre
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -55,7 +56,7 @@ private var _binding: FragmentFindVcentreBinding? = null
 
         userSharedPreferences.pincode?.let { homeViewModel.getData(it) }
 
-        val adaptor=VCentreAdapter();
+        val adaptor=VCentreAdapter{openMap(it)};
         _binding?.recyclerView?.layoutManager= LinearLayoutManager(context)
         _binding?.recyclerView?.adapter=adaptor
 
@@ -87,6 +88,11 @@ private var _binding: FragmentFindVcentreBinding? = null
     }
 
 
+    fun openMap(mapLink:String){
+        val intent=Intent(android.content.Intent.ACTION_VIEW, Uri.parse(mapLink))
+        startActivity(intent)
+
+    }
 override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
