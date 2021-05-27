@@ -85,6 +85,9 @@ dependencies {
     //Lottie Animation
     implementation "com.airbnb.android:lottie:$lottieVersion"
 
+    //Pdf Viewer
+    implementation 'es.voghdev.pdfviewpager:library:1.1.2'
+
 
 
 }

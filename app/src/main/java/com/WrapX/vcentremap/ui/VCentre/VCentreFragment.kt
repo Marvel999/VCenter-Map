@@ -1,5 +1,6 @@
 package com.WrapX.vcentremap.ui.VCentre
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.WrapX.vcentremap.InfoActivity
 import com.WrapX.vcentremap.databinding.FragmentFindVcentreBinding
 import com.WrapX.vcentremap.databinding.FragmentVcentreBinding
 import com.WrapX.vcentremap.repo.SharePrefrance.UserSharedPreferences
@@ -41,6 +43,11 @@ private var _binding: FragmentVcentreBinding? = null
         super.onActivityCreated(savedInstanceState)
         val userSharedPreferences= UserSharedPreferences(requireContext())
         binding.header.userName.text="Hey "+userSharedPreferences.name
+
+        binding.header.imgInfo.setOnClickListener {
+            val intent= Intent(activity, InfoActivity::class.java)
+            startActivity(intent);
+        }
     }
 override fun onDestroyView() {
         super.onDestroyView()

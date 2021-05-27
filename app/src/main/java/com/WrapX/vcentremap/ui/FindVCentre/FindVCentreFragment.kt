@@ -1,5 +1,6 @@
 package com.WrapX.vcentremap.ui.FindVCentre
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.WrapX.vcentremap.InfoActivity
+import com.WrapX.vcentremap.PdfViewer
 import com.WrapX.vcentremap.adapter.VCentreAdapter
 import com.WrapX.vcentremap.databinding.FragmentFindVcentreBinding
 import com.WrapX.vcentremap.repo.SharePrefrance.UserSharedPreferences
@@ -71,6 +74,12 @@ private var _binding: FragmentFindVcentreBinding? = null
 
             }
             Log.e("VCentre Data",""+it.toString())
+        }
+
+
+        binding.header.imgInfo.setOnClickListener {
+            val intent=Intent(activity,InfoActivity::class.java)
+            startActivity(intent);
         }
 
 
