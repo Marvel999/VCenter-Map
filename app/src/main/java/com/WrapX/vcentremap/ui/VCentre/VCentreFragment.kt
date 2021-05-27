@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.WrapX.vcentremap.databinding.FragmentFindVcentreBinding
 import com.WrapX.vcentremap.databinding.FragmentVcentreBinding
+import com.WrapX.vcentremap.repo.SharePrefrance.UserSharedPreferences
 
 class VCentreFragment : Fragment() {
 
@@ -30,10 +31,17 @@ private var _binding: FragmentVcentreBinding? = null
     _binding = FragmentVcentreBinding.inflate(inflater, container, false)
     val root: View = binding.root
 
+
+
     
     return root
   }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        val userSharedPreferences= UserSharedPreferences(requireContext())
+        binding.header.userName.text="Hey "+userSharedPreferences.name
+    }
 override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -13,6 +13,7 @@
             android:name="com.WrapX.vcentremap.AppActivity"
             android:label="@string/title_activity_app"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing"
             android:theme="@style/Theme.VCentreMap">
 
         </activity>

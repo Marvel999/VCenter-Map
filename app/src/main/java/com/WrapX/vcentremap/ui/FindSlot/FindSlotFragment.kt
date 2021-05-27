@@ -1,15 +1,15 @@
 package com.WrapX.vcentremap.ui.FindSlot
 
+import android.app.Activity
 import android.app.DatePickerDialog
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
-import android.widget.Button
-import android.widget.TextView
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.fragment.app.DialogFragment
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -65,6 +65,7 @@ class FindSlotFragment : Fragment(){
         viewModel = ViewModelProvider(this).get(FindSlotViewModel::class.java)
 
 
+        _binding?.noResultFirst?.Mainlayout?.visibility=View.VISIBLE
 
         _binding?.dateTv?.setOnClickListener {
 
@@ -91,7 +92,11 @@ class FindSlotFragment : Fragment(){
         _binding?.recyclerView?.adapter= slotAdapter
 
         binding.searchBtn.setOnClickListener {
+            slotDatalist.clear()
+            _binding?.noResultFirst?.Mainlayout?.visibility=View.GONE
+            _binding?.Loading?.visibility=View.VISIBLE
             pinCode=binding.pinCodeTv.text.toString()
+            _binding?.pinCodeTv?.let { it1 -> hideSoftKeyboard(it1) }
             if(fieldValidation(pinCode,date)){
                 fetchData(pinCode,date);
 //                viewModel.getFeed(pinCode,date);
@@ -141,7 +146,7 @@ class FindSlotFragment : Fragment(){
                             val min_age_limit = jsonObject.getString("min_age_limit")
                             val vaccine = jsonObject.getString("vaccine")
 
-                            Toast.makeText(requireContext(), jsonObject.toString(), Toast.LENGTH_SHORT).show()
+//                            Toast.makeText(requireContext(), jsonObject.toString(), Toast.LENGTH_SHORT).show()
 
                             val sloat = SlotData(
                                 name,
@@ -159,8 +164,17 @@ class FindSlotFragment : Fragment(){
                             slotDatalist.add(sloat)
                         }
 
-                        slotAdapter.submitList(slotDatalist).let {
-                            slotAdapter.notifyDataSetChanged();
+                        if (slotDatalist.size>0){
+                            _binding?.noResultFirst?.Mainlayout?.visibility=View.GONE
+                            _binding?.notfound?.visibility=View.GONE
+                            _binding?.Loading?.visibility=View.GONE
+                            slotAdapter.submitList(slotDatalist).let {
+                           slotAdapter.notifyDataSetChanged();
+                        }
+                        }else{
+                            _binding?.Loading?.visibility=View.GONE
+                            _binding?.notfound?.visibility=View.VISIBLE
+
                         }
 
                     } catch (e: JSONException) {
@@ -186,6 +200,11 @@ class FindSlotFragment : Fragment(){
     }
 
 
+    fun hideSoftKeyboard(view: View) {
+        val imm =
+            activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
 
 
 

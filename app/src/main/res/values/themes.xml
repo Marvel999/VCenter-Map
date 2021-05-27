@@ -32,6 +32,18 @@
         <item name="android:paddingLeft">26dp</item>
         <item name="android:paddingRight">26dp</item>
     </style>
+
+    <style name="Theme.VCentreMap.outline" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="fontFamily">@font/product_sans_bold</item>
+        <item name="background">@drawable/green_stock_btn</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:paddingBottom">7dp</item>
+        <item name="android:paddingTop">7dp</item>
+        <item name="android:paddingLeft">26dp</item>
+        <item name="android:paddingRight">26dp</item>
+    </style>
     <style name="Theme.VCentreMap.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.VCentreMap.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

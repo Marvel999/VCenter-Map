@@ -38,6 +38,9 @@ class PinCodeFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(PinCodeViewModel::class.java)
         val userSharedPreferences=UserSharedPreferences(requireContext())
         viewBinding.include.userName.text="Hey "+userSharedPreferences.name
+        val pincode=userSharedPreferences.pincode.toString();
+        if (!pincode.equals("110001"))
+           viewBinding.edPincode.setText(userSharedPreferences.pincode.toString())
 
         viewBinding.findBtn.setOnClickListener {
             val pincode=viewBinding.edPincode.text;

@@ -13,7 +13,7 @@ class GetVCentre {
      var _mlist=MutableLiveData<ArrayList<VCentre>>()
     var mlist: LiveData<ArrayList<VCentre>> = _mlist
 
-    fun getdata(){
+    fun getdata(pinCode:String){
         var database: FirebaseDatabase = FirebaseDatabase.getInstance()
         var myRef: DatabaseReference = database.getReference()
 
@@ -22,6 +22,7 @@ class GetVCentre {
                 for (snap in dataSnapshot.children){
                     var count=0;
 //                    Log.e("Data",""+snap)
+
                     val centreName=snap.child("VCName").value.toString()
                     val vcAddress=snap.child("VCAddress").value.toString()
                     val vcPinCode=snap.child("PinCode").value.toString()
@@ -31,7 +32,9 @@ class GetVCentre {
                     Log.e("PinCode",vcPinCode);
                     Log.e("MapLink",vCGoogleMap);
                     val vCentre=VCentre(centreName,vcAddress,vcPinCode,vCGoogleMap)
-                    list.add(vCentre)
+                    if(pinCode.equals(vcPinCode))
+                       list.add(vCentre)
+
 
                 }
                 _mlist.value=list

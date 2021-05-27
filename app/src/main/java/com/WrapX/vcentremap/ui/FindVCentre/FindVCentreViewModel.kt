@@ -14,9 +14,9 @@ class FindVCentreViewModel : ViewModel() {
     private var _vCList=MutableLiveData<ArrayList<VCentre>>();
      var vCList:LiveData<ArrayList<VCentre>> = _vCList;
 
-    fun getData(){
+    fun getData(pinCode:String){
 
-        val list=getdata.getdata();
+        val list=getdata.getdata(pinCode);
         Log.e("List",""+list)
        vCList =getdata._mlist
 

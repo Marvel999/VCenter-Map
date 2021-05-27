@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.WrapX.vcentremap.adapter.VCentreAdapter
 import com.WrapX.vcentremap.databinding.FragmentFindVcentreBinding
+import com.WrapX.vcentremap.repo.SharePrefrance.UserSharedPreferences
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -47,18 +48,27 @@ private var _binding: FragmentFindVcentreBinding? = null
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        homeViewModel.getData()
+        val userSharedPreferences= UserSharedPreferences(requireContext())
+
+        userSharedPreferences.pincode?.let { homeViewModel.getData(it) }
 
         val adaptor=VCentreAdapter();
         _binding?.recyclerView?.layoutManager= LinearLayoutManager(context)
         _binding?.recyclerView?.adapter=adaptor
 
-        _binding?.header?.userName?.text="Rama"
+        _binding?.Loading?.visibility=View.VISIBLE
 
+        binding.header.userName.text="Hey "+userSharedPreferences.name
         homeViewModel.vCList.observe({lifecycle}){
-            adaptor.submitList(it).let {
-                adaptor.notifyDataSetChanged()
-//                progressDialog.dismiss()
+            if(it.size>0) {
+                adaptor.submitList(it).let {
+                    _binding?.Loading?.visibility = View.GONE
+
+                }
+            }else{
+                _binding?.Loading?.visibility = View.GONE
+                _binding?.notfound?.visibility=View.VISIBLE
+
             }
             Log.e("VCentre Data",""+it.toString())
         }
