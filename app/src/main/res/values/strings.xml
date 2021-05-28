@@ -16,6 +16,15 @@
     <string name="vactination_centre_near_you">Vactination Centre</string>
     <string name="enter_pincode_select_date_and_click_on_search_button_for_n_getting_vaccine_availability_in_your_area">Enter Pincode, Select Date and Click on Search Button For Getting vaccine availability in your Area.</string>
     <string name="firstQuestion">Q.1 how to get available vaccine slot?</string>
-    <string name="firstAnswer">Ans. For gating sloat notification you can use notfication facility provided by  check slot section of App, PAYTM, website,and many Telegram group</string>
+    <string name="firstAnswer">Ans. For gating sloat notification you can use notification facility provided by  check slot section of App, PAYTM, website,and many Telegram group</string>
+    <string name="secondQuestion">Q.2 How to get Vaccine slot Notification?</string>
+    <string name="secondAnswer">Ans. There is many of Source to get vaccine slot notification some of Links are given below:-</string>
+    <string name="VaccineAlert"><a href="https://campsite.bio/vaccine.alerts">Telegram groups</a></string>
+    <string name="vcovidTracker"><a href="https://www.labnol.org/covid19-vaccine-tracker-210501"> Vaccine tracing site</a></string>
+    <string name="PaytmVFinder"><a href="https://m.paytm.me/vaccineslotfinder"> Paytm Vaccine Finder</a></string>
 
+    <string name="thirdQuestion">Q.2 How you can help other and contribute to this app?</string>
+    <string name="thirdAnswer">Ans. If you are developer the Please check data source for Vaccination center with should have these
+    attributes "Vaccination centre name", "Vaccination centre Address","Area Pincode" and "Pin-point google map link". If you find the source  </string>
+    <string name="jsonFileLink"><a href="https://campsite.bio/vaccine.alerts">Json File</a></string>
 </resources>

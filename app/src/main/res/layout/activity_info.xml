@@ -54,6 +54,116 @@
 
     </LinearLayout>
 
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/qTitleTwo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/product_sans_bold"
+            android:textSize="16sp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/darkText"
+            android:text="@string/secondQuestion"
+            />
+
+        <TextView
+            android:id="@+id/answerTwo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/product_sans"
+            android:textSize="14sp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/liteText"
+            android:text="@string/secondAnswer"
+            />
+
+        <TextView
+            android:id="@+id/telegramGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/product_sans"
+            android:textSize="14sp"
+            android:clickable="true"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/colorPrimary"
+            android:text="@string/VaccineAlert"
+             />
+        <TextView
+            android:id="@+id/ptmfinder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/product_sans"
+            android:textSize="14sp"
+            android:clickable="true"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/colorPrimary"
+            android:text="@string/PaytmVFinder"
+            />
+        <TextView
+            android:id="@+id/website"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/product_sans"
+            android:textSize="14sp"
+            android:clickable="true"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/colorPrimary"
+            android:text="@string/vcovidTracker"
+       />
+
+    </LinearLayout>
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/qTitleThree"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/product_sans_bold"
+                    android:textSize="16sp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/darkText"
+                    android:text="@string/thirdQuestion"
+                    />
+
+                <TextView
+                    android:id="@+id/answerThree"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/product_sans"
+                    android:textSize="14sp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/liteText"
+                    android:text="@string/thirdAnswer"
+                    />
+
+                <TextView
+                    android:id="@+id/jsonFile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/product_sans"
+                    android:textSize="14sp"
+                    android:clickable="true"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/jsonFileLink"
+                    />
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </ScrollView>
