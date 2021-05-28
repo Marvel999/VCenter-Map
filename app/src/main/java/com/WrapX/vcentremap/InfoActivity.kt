@@ -14,6 +14,7 @@ class InfoActivity : AppCompatActivity() {
     private lateinit var website:TextView
     private lateinit var paytmFinder:TextView
     private lateinit var jsonFile:TextView
+    private lateinit var cowin:TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_info)
@@ -23,6 +24,7 @@ class InfoActivity : AppCompatActivity() {
         paytmFinder=findViewById(R.id.ptmfinder)
         jsonFile=findViewById(R.id.jsonFile)
         telegram=findViewById(R.id.telegramGroup)
+        cowin=findViewById(R.id.cowin)
         title.text="Tips & Tricks"
         setClickableText()
         backBtn.setOnClickListener {
@@ -35,6 +37,7 @@ class InfoActivity : AppCompatActivity() {
 
     fun setClickableText(){
         website.setMovementMethod(LinkMovementMethod.getInstance());
+        cowin.setMovementMethod(LinkMovementMethod.getInstance());
         jsonFile.setMovementMethod(LinkMovementMethod.getInstance());
         paytmFinder.setMovementMethod(LinkMovementMethod.getInstance());
         telegram.setMovementMethod(LinkMovementMethod.getInstance());

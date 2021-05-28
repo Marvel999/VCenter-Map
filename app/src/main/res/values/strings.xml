@@ -15,7 +15,7 @@
     <string name="find">Find</string>
     <string name="vactination_centre_near_you">Vactination Centre</string>
     <string name="enter_pincode_select_date_and_click_on_search_button_for_n_getting_vaccine_availability_in_your_area">Enter Pincode, Select Date and Click on Search Button For Getting vaccine availability in your Area.</string>
-    <string name="firstQuestion">Q.1 how to get available vaccine slot?</string>
+    <string name="firstQuestion">Q.1 How to get available vaccine slot?</string>
     <string name="firstAnswer">Ans. For gating sloat notification you can use notification facility provided by  check slot section of App, PAYTM, website,and many Telegram group</string>
     <string name="secondQuestion">Q.2 How to get Vaccine slot Notification?</string>
     <string name="secondAnswer">Ans. There is many of Source to get vaccine slot notification some of Links are given below:-</string>
@@ -23,8 +23,15 @@
     <string name="vcovidTracker"><a href="https://www.labnol.org/covid19-vaccine-tracker-210501"> Vaccine tracing site</a></string>
     <string name="PaytmVFinder"><a href="https://m.paytm.me/vaccineslotfinder"> Paytm Vaccine Finder</a></string>
 
-    <string name="thirdQuestion">Q.2 How you can help other and contribute to this app?</string>
+    <string name="thirdQuestion">Q.3 How you can help other and contribute to this app?</string>
     <string name="thirdAnswer">Ans. If you are developer the Please check data source for Vaccination center with should have these
-    attributes "Vaccination centre name", "Vaccination centre Address","Area Pincode" and "Pin-point google map link". If you find the source  </string>
-    <string name="jsonFileLink"><a href="https://campsite.bio/vaccine.alerts">Json File</a></string>
+    attributes "Vaccination centre name", "Vaccination centre Address","Area Pincode" and "Pin-point google map link". If you find the source
+    Please update this json file or you can mail me on info.wrapx@gmail.com.</string>
+    <string name="jsonFileLink"><a href="https://github.com/Marvel999/Vaccination-Centres-Json-File">Json File</a></string>
+
+    <string name="fourthQuestion">Q.4 How to Book slot for vaccination?</string>
+    <string name="fourthAnswer">Ans. you can book vaccination by Aarogya Setu App or By Cowin website.</string>
+    <string name="cowinSite"><a href="https://www.cowin.gov.in/home">Cowin Website</a></string>
+
+
 </resources>
