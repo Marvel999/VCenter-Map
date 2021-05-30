@@ -73,13 +73,13 @@
             android:id="@+id/navigate_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_explore_24"
-            android:padding="10dp"
+            android:layout_marginEnd="20dp"
             android:background="@drawable/green_card_background"
+            android:padding="10dp"
+            android:src="@drawable/ic_baseline_explore_24"
             android:tint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/vcentre"
             app:layout_constraintTop_toTopOf="parent" />
 
 

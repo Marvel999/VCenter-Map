@@ -89,7 +89,10 @@
             android:layout_weight="1"
             android:textSize="14sp"
             android:background="@drawable/card_background"
+            android:fontFamily="@font/product_sans_bold"
+            android:textColor="@color/darkText"
             android:hint="110001"
+            android:maxLength="6"
             android:inputType="number"
             android:padding="10dp" />
 
@@ -101,6 +104,8 @@
             android:layout_weight="1"
             android:textSize="14sp"
             android:hint="11/1/2021"
+            android:textColor="@color/darkText"
+            android:fontFamily="@font/product_sans_bold"
             android:background="@drawable/card_background"
             android:padding="10dp" />
     </LinearLayout>
@@ -130,16 +135,13 @@
     <include
         android:id="@+id/noResultFirst"
         layout="@layout/no_search_result_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginEnd="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_marginHorizontal="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/recyclerView" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/notfound"

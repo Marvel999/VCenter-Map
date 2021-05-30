@@ -3,6 +3,7 @@ package com.WrapX.vcentremap.ui.FindSlot
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Context
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.WrapX.vcentremap.adapter.SlotAdapter
 import com.WrapX.vcentremap.databinding.FindSlotFragmentBinding
 import com.WrapX.vcentremap.repo.model.SlotData
+import com.WrapX.vcentremap.utils.Utills
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -35,8 +37,8 @@ class FindSlotFragment : Fragment(){
 
 
 
-    private lateinit var pinCode:String;
-    private lateinit var date:String;
+    private  var pinCode:String?=""
+    private  var date:String?=null
     private lateinit var slotDatalist:ArrayList<SlotData>
     private lateinit var slotAdapter: SlotAdapter
 
@@ -92,16 +94,20 @@ class FindSlotFragment : Fragment(){
         _binding?.recyclerView?.adapter= slotAdapter
 
         binding.searchBtn.setOnClickListener {
-            slotDatalist.clear()
-            _binding?.noResultFirst?.Mainlayout?.visibility=View.GONE
-            _binding?.Loading?.visibility=View.VISIBLE
             pinCode=binding.pinCodeTv.text.toString()
-            _binding?.pinCodeTv?.let { it1 -> hideSoftKeyboard(it1) }
-            if(fieldValidation(pinCode,date)){
-                fetchData(pinCode,date);
+
+            if(!pinCode!!.isEmpty() && date?.isEmpty()==false){
+                slotDatalist.clear()
+                _binding?.noResultFirst?.Mainlayout?.visibility=View.GONE
+                _binding?.Loading?.visibility=View.VISIBLE
+                _binding?.pinCodeTv?.let { it1 -> hideSoftKeyboard(it1) }
+
+                fetchData(pinCode!!,date!!);
 //                viewModel.getFeed(pinCode,date);
             }else{
-                Toast.makeText(this.requireContext(),"Invalid Input",Toast.LENGTH_LONG).show();
+
+//                Toast.makeText(this.requireContext(),"Invalid Input",Toast.LENGTH_LONG).show();
+                Utills.showSnackBar(requireActivity(),"Invalid Input")
             }
         }
 
@@ -191,13 +197,7 @@ class FindSlotFragment : Fragment(){
 
 
 
-    private fun fieldValidation(pincode:String, date:String):Boolean{
-        if(pincode.isEmpty())
-            return false
-         if(date.isEmpty())
-             return false
-        return true
-    }
+
 
 
     fun hideSoftKeyboard(view: View) {
