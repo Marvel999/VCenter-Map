@@ -95,12 +95,12 @@ class FindSlotFragment : Fragment(){
 
         binding.searchBtn.setOnClickListener {
             pinCode=binding.pinCodeTv.text.toString()
+            _binding?.pinCodeTv?.let { it1 -> hideSoftKeyboard(it1) }
 
-            if(!pinCode!!.isEmpty() && date?.isEmpty()==false){
+            if(!pinCode!!.isEmpty() && date?.isEmpty()==false && pinCode!!.length>=6){
                 slotDatalist.clear()
                 _binding?.noResultFirst?.Mainlayout?.visibility=View.GONE
                 _binding?.Loading?.visibility=View.VISIBLE
-                _binding?.pinCodeTv?.let { it1 -> hideSoftKeyboard(it1) }
 
                 fetchData(pinCode!!,date!!);
 //                viewModel.getFeed(pinCode,date);

@@ -41,11 +41,11 @@
 
         <TextView
             android:id="@+id/vcentre"
-            android:layout_width="250dp"
+            android:layout_width="260dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/product_sans_bold"
-            android:maxLines="1"
+            android:maxLines="2"
             android:ellipsize="end"
             android:text="CGHS Dispensery SEC 16 Rohini"
             android:textColor="@color/colorPrimaryDark"
@@ -56,7 +56,7 @@
 
         <TextView
             android:id="@+id/vcAddress"
-            android:layout_width="250dp"
+            android:layout_width="260dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/product_sans"
