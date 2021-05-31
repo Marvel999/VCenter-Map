@@ -1,5 +1,6 @@
 package com.WrapX.vcentremap
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
@@ -30,7 +31,6 @@ class InfoActivity : AppCompatActivity() {
         backBtn.setOnClickListener {
             onBackPressed()
         }
-
 
 
     }

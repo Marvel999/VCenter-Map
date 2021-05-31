@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.WrapX.vcentremap.InfoActivity
 import com.WrapX.vcentremap.PdfViewer
+import com.WrapX.vcentremap.SettingsActivity
 import com.WrapX.vcentremap.adapter.VCentrePdfAdapter
 import com.WrapX.vcentremap.databinding.FragmentFindVcentreBinding
 import com.WrapX.vcentremap.databinding.FragmentVcentreBinding
@@ -52,8 +53,8 @@ private var _binding: FragmentVcentreBinding? = null
         val userSharedPreferences= UserSharedPreferences(requireContext())
         binding.header.userName.text="Hey "+userSharedPreferences.name
 
-        binding.header.imgInfo.setOnClickListener {
-            val intent= Intent(activity, InfoActivity::class.java)
+        binding.header.imgSetting.setOnClickListener {
+            val intent=Intent(activity, SettingsActivity::class.java)
             startActivity(intent);
         }
 

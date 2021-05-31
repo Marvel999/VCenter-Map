@@ -3,6 +3,7 @@ package com.WrapX.vcentremap.ui.FindSlot
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.Intent
 import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.WrapX.vcentremap.InfoActivity
 import com.WrapX.vcentremap.adapter.SlotAdapter
 import com.WrapX.vcentremap.databinding.FindSlotFragmentBinding
 import com.WrapX.vcentremap.repo.model.SlotData
@@ -116,6 +118,10 @@ class FindSlotFragment : Fragment(){
         }
 
 
+        binding.infoIV.setOnClickListener {
+            val intent = Intent(activity,InfoActivity::class.java);
+            startActivity(intent)
+        }
 
 
 
