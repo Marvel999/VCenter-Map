@@ -22,4 +22,8 @@ class UserSharedPreferences(val context: Context) {
              get() = sharePreference.getString(areaPinCode,"110001").toString()
              set(value) {  sharePreference.edit().putString(areaPinCode, value).apply()}
 
+    fun deleteSharePrefance(){
+        sharePreference.edit().clear().apply()
+    }
+
 }

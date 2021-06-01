@@ -4,20 +4,27 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.ListView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.WrapX.vcentremap.adapter.CustomListAdapter
+import com.WrapX.vcentremap.repo.SharePrefrance.UserSharedPreferences
 import com.WrapX.vcentremap.repo.model.ListItem
 
 
 class SettingsActivity : AppCompatActivity(), CustomListAdapter.onItemClick {
     private lateinit var listView:ListView
+    private lateinit var backBtn:ImageView
+    private lateinit var activityTitle:TextView
     private lateinit var stringArray:ArrayList<ListItem>;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
         listView=findViewById(R.id.listView);
+        backBtn=findViewById(R.id.back_btn);
+        activityTitle=findViewById(R.id.title);
         stringArray= ArrayList()
         stringArray.add(ListItem("Share our App with your friends",R.drawable.ic_share))
         stringArray.add(ListItem("Rating us on Google Play Store",R.drawable.ic_rating))
@@ -27,7 +34,11 @@ class SettingsActivity : AppCompatActivity(), CustomListAdapter.onItemClick {
         val listAdapter= CustomListAdapter(this,this,stringArray)
         listView.adapter=listAdapter;
 
+        activityTitle.text="Settings"
 
+        backBtn.setOnClickListener {
+            onBackPressed()
+        }
 
     }
 
@@ -63,6 +74,12 @@ class SettingsActivity : AppCompatActivity(), CustomListAdapter.onItemClick {
     }
 
     fun logoutApp(){
+
+        val userSharedPreferences=UserSharedPreferences(this)
+        userSharedPreferences.deleteSharePrefance();
+        val intent=Intent(this,MainActivity::class.java);
+        startActivity(intent)
+        finish()
 
     }
 
