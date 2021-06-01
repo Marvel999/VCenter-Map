@@ -12,6 +12,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.WrapX.vcentremap.adapter.CustomListAdapter
 import com.WrapX.vcentremap.repo.SharePrefrance.UserSharedPreferences
 import com.WrapX.vcentremap.repo.model.ListItem
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 class SettingsActivity : AppCompatActivity(), CustomListAdapter.onItemClick {
@@ -74,12 +78,21 @@ class SettingsActivity : AppCompatActivity(), CustomListAdapter.onItemClick {
     }
 
     fun logoutApp(){
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+        val mGoogleSignInClient= GoogleSignIn.getClient(this,gso)
+        mGoogleSignInClient.signOut().addOnCompleteListener {
+            val userSharedPreferences=UserSharedPreferences(this)
+            userSharedPreferences.deleteSharePrefance();
+            Firebase.auth.signOut()
+            val intent=Intent(this,MainActivity::class.java);
+            startActivity(intent)
+            finish()
+        }
 
-        val userSharedPreferences=UserSharedPreferences(this)
-        userSharedPreferences.deleteSharePrefance();
-        val intent=Intent(this,MainActivity::class.java);
-        startActivity(intent)
-        finish()
+
 
     }
 
