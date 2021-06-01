@@ -12,4 +12,6 @@
     <color name="darkText">#333A47</color>
     <color name="liteText">#5C616C</color>
     <color name="card_stoke">#EDEDED</color>
+    <color name="litegray">#E3E8E3</color>
+    <color name="darkgray">#4B584C</color>
 </resources>
