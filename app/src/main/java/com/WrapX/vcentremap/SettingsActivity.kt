@@ -9,9 +9,11 @@ import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.WrapX.vcentremap.adapter.CustomListAdapter
 import com.WrapX.vcentremap.repo.SharePrefrance.UserSharedPreferences
 import com.WrapX.vcentremap.repo.model.ListItem
+import com.WrapX.vcentremap.ui.FindVCentre.FindVCentreViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.ktx.auth
@@ -19,6 +21,9 @@ import com.google.firebase.ktx.Firebase
 
 
 class SettingsActivity : AppCompatActivity(), CustomListAdapter.onItemClick {
+
+    private lateinit var homeViewModel: FindVCentreViewModel
+
     private lateinit var listView:ListView
     private lateinit var backBtn:ImageView
     private lateinit var activityTitle:TextView
@@ -34,6 +39,9 @@ class SettingsActivity : AppCompatActivity(), CustomListAdapter.onItemClick {
         stringArray.add(ListItem("Rating us on Google Play Store",R.drawable.ic_rating))
         stringArray.add(ListItem("Feedback & Support",R.drawable.ic_feedback))
         stringArray.add(ListItem("Logout",R.drawable.ic_logout))
+
+        homeViewModel =
+            ViewModelProvider(this).get(FindVCentreViewModel::class.java)
 
         val listAdapter= CustomListAdapter(this,this,stringArray)
         listView.adapter=listAdapter;
@@ -87,6 +95,7 @@ class SettingsActivity : AppCompatActivity(), CustomListAdapter.onItemClick {
             val userSharedPreferences=UserSharedPreferences(this)
             userSharedPreferences.deleteSharePrefance();
             Firebase.auth.signOut()
+            homeViewModel.deleteTable()
             val intent=Intent(this,MainActivity::class.java);
             startActivity(intent)
             finish()

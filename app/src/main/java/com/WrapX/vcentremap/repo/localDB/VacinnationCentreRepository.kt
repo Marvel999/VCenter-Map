@@ -11,4 +11,8 @@ class VacinnationCentreRepository(private val vaccinationDao: VaccinationDao) {
         Log.e("Add","Data In Database")
         vaccinationDao.addVaccinationCentre(vaccinationCentre)
     }
+
+   suspend fun deleteTable(){
+        vaccinationDao.deleteTable()
+    }
 }

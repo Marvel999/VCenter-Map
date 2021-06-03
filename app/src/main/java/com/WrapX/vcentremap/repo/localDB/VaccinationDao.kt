@@ -13,4 +13,7 @@ interface VaccinationDao {
 
     @Query("SELECT * FROM vaccination_centre ORDER BY id ASC")
     fun readAllData():LiveData<List<VaccinationCentre>>
+
+    @Query("DELETE FROM vaccination_centre")
+   suspend fun deleteTable();
 }

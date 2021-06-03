@@ -76,6 +76,7 @@ private var _binding: FragmentFindVcentreBinding? = null
         // observe data get from api
         homeViewModel.vCList.observe({lifecycle}){
             if(it.size>0) {
+                homeViewModel.deleteTable()
                 for (iteam in it){
                         homeViewModel.AddVaccinationCentre(VaccinationCentre(0,iteam.vCName,iteam.vCAddress,iteam.vCPinCode,iteam.vCMapLink))
                     }
@@ -88,7 +89,7 @@ private var _binding: FragmentFindVcentreBinding? = null
         // observe the list from database
         homeViewModel.dataBasevaccinationCentreList.observe({lifecycle}){
             var pincode=userSharedPreferences.pincode;
-            if (it.size>0) {
+            if (it.size>0 && userSharedPreferences.date.equals(CalenderDate.getDate())) {
                 for (iteam in it) {
                     if (iteam.Pincode == pincode) {
                         vaccinationCentreList.add(

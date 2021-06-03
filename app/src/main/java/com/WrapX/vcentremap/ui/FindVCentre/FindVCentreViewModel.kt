@@ -42,6 +42,13 @@ class FindVCentreViewModel(application: Application) : AndroidViewModel(applicat
         dataBasevaccinationCentreList=repositor.readAllData
     }
 
+     fun deleteTable(){
+         viewModelScope.launch {
+             repositor.deleteTable()
+         }
+
+    }
+
 
 
 
