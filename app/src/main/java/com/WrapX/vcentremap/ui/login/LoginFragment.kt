@@ -1,17 +1,20 @@
 package com.WrapX.vcentremap.ui.login
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.WrapX.vcentremap.R
 import com.WrapX.vcentremap.repo.SharePrefrance.UserSharedPreferences
+import com.WrapX.vcentremap.utils.Utills
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -44,6 +47,7 @@ class LoginFragment : Fragment() {
         return root;
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
@@ -55,14 +59,20 @@ class LoginFragment : Fragment() {
             .build()
 
         mGoogleSignInClient = GoogleSignIn.getClient(this.requireActivity(), gso)
-        singIn.setOnClickListener {
+        singIn.setOnClickListener { if(Utills.isOnline(requireContext())) {
            signIn()
+
+        }else{
+            Utills.showSnackBar(requireActivity(),"No Internet")
+        }
         }
     }
 
     private fun signIn() {
-        val signInIntent = mGoogleSignInClient.signInIntent
-        startActivityForResult(signInIntent, RC_SIGN_IN)
+
+            val signInIntent = mGoogleSignInClient.signInIntent
+            startActivityForResult(signInIntent, RC_SIGN_IN)
+
     }
 
     override fun onStart() {

@@ -13,6 +13,7 @@ import com.WrapX.vcentremap.AppActivity
 import com.WrapX.vcentremap.R
 import com.WrapX.vcentremap.databinding.PinCodeFragmentBinding
 import com.WrapX.vcentremap.repo.SharePrefrance.UserSharedPreferences
+import com.WrapX.vcentremap.utils.Utills
 
 class PinCodeFragment : Fragment() {
 
@@ -50,7 +51,7 @@ class PinCodeFragment : Fragment() {
                 startActivity(intent)
 
             }else{
-                Toast.makeText(requireContext(),"Invalid Pincode",Toast.LENGTH_LONG).show()
+                Utills.showSnackBar(requireActivity(),"Invalid Pincode")
             }
         }
 

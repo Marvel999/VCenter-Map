@@ -2,12 +2,14 @@ package com.WrapX.vcentremap.ui.FindVCentre
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,6 +24,7 @@ import com.WrapX.vcentremap.repo.localDB.VaccinationCentre
 import com.WrapX.vcentremap.repo.model.VCentre
 import com.WrapX.vcentremap.utils.CalenderDate
 import com.WrapX.vcentremap.utils.CalenderDate.getDate
+import com.WrapX.vcentremap.utils.Utills
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -64,6 +67,7 @@ private var _binding: FragmentFindVcentreBinding? = null
     return root
   }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
@@ -112,7 +116,13 @@ private var _binding: FragmentFindVcentreBinding? = null
                     _binding?.notfound?.visibility=View.VISIBLE
                 }
             }else{
-                apiCall()
+                if(Utills.isOnline(requireContext()))
+                   apiCall()
+                else {
+                    _binding?.Loading?.visibility = View.GONE
+                    _binding?.notfound?.visibility=View.VISIBLE
+                }
+
             }
 
         }
