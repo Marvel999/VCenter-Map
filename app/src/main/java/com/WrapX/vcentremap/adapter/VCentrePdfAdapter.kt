@@ -12,20 +12,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.WrapX.vcentremap.R
 import com.WrapX.vcentremap.repo.model.VCentrePdf
 
-class VCentrePdfAdapter(val onReadClicked:(link:String)->Unit) : ListAdapter<VCentrePdf, VCentrePdfAdapter.VCentrePdfViewHolder>(
+class VCentrePdfAdapter(val onReadClicked: (link: String) -> Unit) :
+    ListAdapter<VCentrePdf, VCentrePdfAdapter.VCentrePdfViewHolder>(
 
-    object : DiffUtil.ItemCallback<VCentrePdf>() {
-        override fun areItemsTheSame(oldItem: VCentrePdf, newItem: VCentrePdf): Boolean {
-            return oldItem == newItem
+        object : DiffUtil.ItemCallback<VCentrePdf>() {
+            override fun areItemsTheSame(oldItem: VCentrePdf, newItem: VCentrePdf): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(oldItem: VCentrePdf, newItem: VCentrePdf): Boolean {
+
+                return oldItem.toString() == newItem.toString()
+            }
+
         }
-
-        override fun areContentsTheSame(oldItem: VCentrePdf, newItem: VCentrePdf): Boolean {
-
-            return oldItem.toString() == newItem.toString()
-        }
-
-    }
-) {
+    ) {
 
 
     inner class VCentrePdfViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -36,12 +37,11 @@ class VCentrePdfAdapter(val onReadClicked:(link:String)->Unit) : ListAdapter<VCe
     }
 
 
-
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): VCentrePdfAdapter.VCentrePdfViewHolder {
-        val inflater = LayoutInflater.from(parent.context);
+        val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.pdf_rv_layout, parent, false);
         val root = VCentrePdfViewHolder(
             view
@@ -51,10 +51,10 @@ class VCentrePdfAdapter(val onReadClicked:(link:String)->Unit) : ListAdapter<VCe
 
 
     override fun onBindViewHolder(holder: VCentrePdfViewHolder, position: Int) {
-        val vCentrePdf = getItem(position);
+        val vCentrePdf = getItem(position)
         holder.stateTv.text = vCentrePdf.stateName
         holder.readBtn.setOnClickListener {
-            onReadClicked(vCentrePdf.link);
+            onReadClicked(vCentrePdf.link)
         }
     }
 }

@@ -17,18 +17,14 @@ import com.WrapX.vcentremap.utils.Utills
 
 class PinCodeFragment : Fragment() {
 
-
-    private lateinit var viewModel: PinCodeViewModel
-    private lateinit var _viewBinding:PinCodeFragmentBinding
-
-    private val viewBinding get()=_viewBinding
+    private var _viewBinding: PinCodeFragmentBinding? = null
+    private val viewBinding get() = _viewBinding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
-        _viewBinding= PinCodeFragmentBinding.inflate(inflater,container,false)
+    ): View {
+        _viewBinding = PinCodeFragmentBinding.inflate(inflater, container, false)
         val root: View = viewBinding.root
 
         return root;
@@ -36,26 +32,31 @@ class PinCodeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(PinCodeViewModel::class.java)
-        val userSharedPreferences=UserSharedPreferences(requireContext())
-        viewBinding.include.userName.text="Hey "+userSharedPreferences.name
-        val pincode=userSharedPreferences.pincode.toString();
+        val userSharedPreferences = UserSharedPreferences(requireContext())
+        viewBinding.include.userName.text = "Hey ${userSharedPreferences.name}"
+        val pincode = userSharedPreferences.pincode.toString()
+
         if (!pincode.equals("110001"))
-           viewBinding.edPincode.setText(userSharedPreferences.pincode.toString())
+            viewBinding.edPincode.setText(userSharedPreferences.pincode.toString())
 
         viewBinding.findBtn.setOnClickListener {
-            val pincode=viewBinding.edPincode.text;
-            if(pincode.length==6){
-                userSharedPreferences.pincode= pincode.toString();
-                val intent=Intent(requireActivity(),AppActivity::class.java);
+            val pincode = viewBinding.edPincode.text.toString()
+            if (pincodeValidation(pincode = pincode)) {
+                userSharedPreferences.pincode = pincode
+                val intent = Intent(requireActivity(), AppActivity::class.java)
                 startActivity(intent)
-
-            }else{
-                Utills.showSnackBar(requireActivity(),"Invalid Pincode")
+            } else {
+                Utills.showSnackBar(requireActivity(), "Invalid Pincode")
             }
         }
+    }
 
-        // TODO: Use the ViewModel
+    fun pincodeValidation(pincode: String) = !(pincode.isEmpty() && pincode.length < 0)
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _viewBinding = null
     }
 
 }

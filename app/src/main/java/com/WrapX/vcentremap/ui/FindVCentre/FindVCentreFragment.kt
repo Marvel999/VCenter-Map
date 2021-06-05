@@ -43,57 +43,65 @@ import kotlin.collections.ArrayList
 
 class FindVCentreFragment : Fragment() {
 
-  private lateinit var homeViewModel: FindVCentreViewModel
-  private lateinit var vaccinationCentreList: ArrayList<VCentre>
-  private lateinit var userSharedPreferences: UserSharedPreferences
-private var _binding: FragmentFindVcentreBinding? = null
+    private lateinit var homeViewModel: FindVCentreViewModel
+    private lateinit var vaccinationCentreList: ArrayList<VCentre>
+    private lateinit var userSharedPreferences: UserSharedPreferences
+    private var _binding: FragmentFindVcentreBinding? = null
 
-  private val binding get() = _binding!!
+    private val binding get() = _binding!!
 
 
-  override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
-    savedInstanceState: Bundle?
-  ): View? {
-    homeViewModel =
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        homeViewModel =
             ViewModelProvider(this).get(FindVCentreViewModel::class.java)
-    _binding = FragmentFindVcentreBinding.inflate(inflater, container, false)
-    val root: View = binding.root
-      vaccinationCentreList= ArrayList();
-      userSharedPreferences= UserSharedPreferences(this.requireContext());
+        _binding = FragmentFindVcentreBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+        vaccinationCentreList = ArrayList()
+        userSharedPreferences = UserSharedPreferences(this.requireContext())
 
 
-    return root
-  }
+        return root
+    }
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val adaptor=VCentreAdapter{openMap(it)};
-        _binding?.recyclerView?.layoutManager= LinearLayoutManager(context)
-        _binding?.recyclerView?.adapter=adaptor
-        _binding?.Loading?.visibility=View.VISIBLE
-        binding.header.userName.text="Hey "+userSharedPreferences.name
+        val adaptor = VCentreAdapter { openMap(it) }
+        _binding?.recyclerView?.layoutManager = LinearLayoutManager(context)
+        _binding?.recyclerView?.adapter = adaptor
+        _binding?.Loading?.visibility = View.VISIBLE
+        binding.header.userName.text = "Hey " + userSharedPreferences.name
 
         // observe data get from api
-        homeViewModel.vCList.observe({lifecycle}){
-            if(it.size>0) {
+        homeViewModel.vCList.observe({ lifecycle }) {
+            if (it.size > 0) {
                 homeViewModel.deleteTable()
-                for (iteam in it){
-                        homeViewModel.AddVaccinationCentre(VaccinationCentre(0,iteam.vCName,iteam.vCAddress,iteam.vCPinCode,iteam.vCMapLink))
-                    }
+                for (iteam in it) {
+                    homeViewModel.AddVaccinationCentre(
+                        VaccinationCentre(
+                            0,
+                            iteam.vCName,
+                            iteam.vCAddress,
+                            iteam.vCPinCode,
+                            iteam.vCMapLink
+                        )
+                    )
+                }
                 homeViewModel.getVaccinationcentreData()
 
             }
-            Log.e("VCentre Data",""+it.toString())
+            Log.e("VCentre Data", "" + it.toString())
         }
 
         // observe the list from database
-        homeViewModel.dataBasevaccinationCentreList.observe({lifecycle}){
-            var pincode=userSharedPreferences.pincode;
-            if (it.size>0 && userSharedPreferences.date.equals(CalenderDate.getDate())) {
+        homeViewModel.dataBasevaccinationCentreList.observe({ lifecycle }) {
+            var pincode = userSharedPreferences.pincode
+            if (it.size > 0 && userSharedPreferences.date.equals(CalenderDate.getDate())) {
                 for (iteam in it) {
                     if (iteam.Pincode == pincode) {
                         vaccinationCentreList.add(
@@ -106,21 +114,21 @@ private var _binding: FragmentFindVcentreBinding? = null
                         )
                     }
                 }
-                if (vaccinationCentreList.size>0){
-                adaptor.submitList(vaccinationCentreList).let {
+                if (vaccinationCentreList.size > 0) {
+                    adaptor.submitList(vaccinationCentreList).let {
+                        _binding?.Loading?.visibility = View.GONE
+                        _binding?.notfound?.visibility = View.GONE
+                    }
+                } else {
                     _binding?.Loading?.visibility = View.GONE
-                    _binding?.notfound?.visibility=View.GONE
+                    _binding?.notfound?.visibility = View.VISIBLE
                 }
-                }else{
-                    _binding?.Loading?.visibility = View.GONE
-                    _binding?.notfound?.visibility=View.VISIBLE
-                }
-            }else{
-                if(Utills.isOnline(requireContext()))
-                   apiCall()
+            } else {
+                if (Utills.isOnline(requireContext()))
+                    apiCall()
                 else {
                     _binding?.Loading?.visibility = View.GONE
-                    _binding?.notfound?.visibility=View.VISIBLE
+                    _binding?.notfound?.visibility = View.VISIBLE
                 }
 
             }
@@ -128,30 +136,30 @@ private var _binding: FragmentFindVcentreBinding? = null
         }
 
         binding.header.imgSetting.setOnClickListener {
-            val intent=Intent(activity,SettingsActivity::class.java)
+            val intent = Intent(activity, SettingsActivity::class.java)
             startActivity(intent);
         }
 
 
-
     }
 
-   // get Api Call
-    fun apiCall(){
+    // get Api Call
+    fun apiCall() {
         if (!userSharedPreferences.date.equals(CalenderDate.getDate())) {
             homeViewModel.getData().let {
-                userSharedPreferences.date= CalenderDate.getDate()
+                userSharedPreferences.date = CalenderDate.getDate()
             }
         }
     }
 
     // Open map link
-    fun openMap(mapLink:String){
-        val intent=Intent(android.content.Intent.ACTION_VIEW, Uri.parse(mapLink))
+    fun openMap(mapLink: String) {
+        val intent = Intent(android.content.Intent.ACTION_VIEW, Uri.parse(mapLink))
         startActivity(intent)
 
     }
-override fun onDestroyView() {
+
+    override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }

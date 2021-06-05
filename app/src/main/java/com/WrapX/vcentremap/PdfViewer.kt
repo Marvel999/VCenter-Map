@@ -89,9 +89,7 @@ class PdfViewer : AppCompatActivity() , DownloadFile.Listener{
 
     override fun onDestroy() {
         super.onDestroy()
-        if (adapter != null) {
-            adapter.close()
-        }
+        adapter.close()
     }
 
 

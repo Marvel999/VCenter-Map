@@ -36,18 +36,16 @@ object SloatStatusClient {
 
     val okHttpBuilder = OkHttpClient.Builder()
         .readTimeout(10, TimeUnit.SECONDS)
-        .connectTimeout(6,TimeUnit.SECONDS)
+        .connectTimeout(6, TimeUnit.SECONDS)
 
 
-
-    val retrofitBuilder= Retrofit.Builder()
+    val retrofitBuilder = Retrofit.Builder()
 
         .baseUrl("https://cdn-api.co-vin.in/")
         .addConverterFactory(MoshiConverterFactory.create())
 
 
-
-    val api=retrofitBuilder
+    val api = retrofitBuilder
         .client(okHttpBuilder.addNetworkInterceptor(AcceptLanguageHeaderInterceptor()).build())
 
         .build()

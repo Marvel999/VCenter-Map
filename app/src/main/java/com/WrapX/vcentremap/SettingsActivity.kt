@@ -27,13 +27,13 @@ class SettingsActivity : AppCompatActivity(), CustomListAdapter.onItemClick {
     private lateinit var listView:ListView
     private lateinit var backBtn:ImageView
     private lateinit var activityTitle:TextView
-    private lateinit var stringArray:ArrayList<ListItem>;
+    private lateinit var stringArray:ArrayList<ListItem>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-        listView=findViewById(R.id.listView);
-        backBtn=findViewById(R.id.back_btn);
-        activityTitle=findViewById(R.id.title);
+        listView=findViewById(R.id.listView)
+        backBtn=findViewById(R.id.back_btn)
+        activityTitle=findViewById(R.id.title)
         stringArray= ArrayList()
         stringArray.add(ListItem("Share our App with your friends",R.drawable.ic_share))
         stringArray.add(ListItem("Rating us on Google Play Store",R.drawable.ic_rating))
@@ -55,7 +55,6 @@ class SettingsActivity : AppCompatActivity(), CustomListAdapter.onItemClick {
     }
 
     override fun onClick(name: String) {
-//        Toast.makeText(this,""+name, Toast.LENGTH_LONG).show()
         if(name==stringArray.get(0).name){
             shareApp()
         }
@@ -72,9 +71,9 @@ class SettingsActivity : AppCompatActivity(), CustomListAdapter.onItemClick {
 
     fun shareApp(){
         val intent = Intent(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Hey check out my app at: https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID);
-        intent.putExtra(Intent.EXTRA_TEXT, "Hey check out my app at: https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID);
+        intent.setType("text/plain")
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Hey check out my app at: https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID)
+        intent.putExtra(Intent.EXTRA_TEXT, "Hey check out my app at: https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID)
         startActivity(Intent.createChooser(intent, "choose one"))
     }
 
@@ -93,10 +92,10 @@ class SettingsActivity : AppCompatActivity(), CustomListAdapter.onItemClick {
         val mGoogleSignInClient= GoogleSignIn.getClient(this,gso)
         mGoogleSignInClient.signOut().addOnCompleteListener {
             val userSharedPreferences=UserSharedPreferences(this)
-            userSharedPreferences.deleteSharePrefance();
+            userSharedPreferences.deleteSharePrefance()
             Firebase.auth.signOut()
             homeViewModel.deleteTable()
-            val intent=Intent(this,MainActivity::class.java);
+            val intent=Intent(this,MainActivity::class.java)
             startActivity(intent)
             finish()
         }

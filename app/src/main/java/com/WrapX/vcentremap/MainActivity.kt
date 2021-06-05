@@ -13,6 +13,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         navController= Navigation.findNavController(findViewById(R.id.nav_host_fragment));
         val userSharedPreferences=UserSharedPreferences(this)
+
+        //use string resource R.
+        //Always relative name , Boolean isLogin
         if (userSharedPreferences.name == "Buddy")
         navController.navigate(R.id.loginFragment)
         else{

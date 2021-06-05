@@ -29,28 +29,30 @@ import com.google.firebase.ktx.Firebase
 
 class LoginFragment : Fragment() {
 
-
-    private lateinit var viewModel: LoginViewModel
     private lateinit var singIn: Button
     private lateinit var mAuth: FirebaseAuth
 
     private lateinit var mGoogleSignInClient: GoogleSignInClient
-    private val RC_SIGN_IN=111;
+
+    companion object {
+        private const val RC_SIGN_IN = 111
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root=inflater.inflate(R.layout.login_fragment, container, false);
-        singIn=root.findViewById(R.id.singInButton);
+        return inflater.inflate(R.layout.login_fragment, container, false)
+    }
 
-        return root;
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        singIn = view.findViewById(R.id.singInButton)
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         mAuth = Firebase.auth
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -59,27 +61,21 @@ class LoginFragment : Fragment() {
             .build()
 
         mGoogleSignInClient = GoogleSignIn.getClient(this.requireActivity(), gso)
-        singIn.setOnClickListener { if(Utills.isOnline(requireContext())) {
-           signIn()
+        singIn.setOnClickListener {
+            if (Utills.isOnline(requireContext())) {
+                signIn()
 
-        }else{
-            Utills.showSnackBar(requireActivity(),"No Internet")
-        }
+            } else {
+                Utills.showSnackBar(requireActivity(), "No Internet")
+            }
         }
     }
 
     private fun signIn() {
 
-            val signInIntent = mGoogleSignInClient.signInIntent
-            startActivityForResult(signInIntent, RC_SIGN_IN)
+        val signInIntent = mGoogleSignInClient.signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
 
-    }
-
-    override fun onStart() {
-        super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = mAuth.currentUser
-//        updateUI(currentUser)
     }
 
 
@@ -93,8 +89,8 @@ class LoginFragment : Fragment() {
                 // Google Sign In was successful, authenticate with Firebase
                 val account = task.getResult(ApiException::class.java)!!
                 Log.d("Login", "firebaseAuthWithGoogle:" + account.id)
-               val userSharedPreferences= UserSharedPreferences(requireContext())
-               userSharedPreferences.name= account.displayName
+                val userSharedPreferences = UserSharedPreferences(requireContext())
+                userSharedPreferences.name = account.displayName
                 firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
@@ -102,7 +98,6 @@ class LoginFragment : Fragment() {
             }
         }
     }
-
 
 
     private fun firebaseAuthWithGoogle(idToken: String) {
@@ -122,7 +117,6 @@ class LoginFragment : Fragment() {
                 }
             }
     }
-
 
 
 }

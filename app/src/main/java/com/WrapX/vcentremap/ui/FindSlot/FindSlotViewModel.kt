@@ -10,17 +10,16 @@ import com.WrapX.vcentremap.repo.retrofit.SlotRepo
 import kotlinx.coroutines.launch
 
 class FindSlotViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
 
-     var repo:SlotFeed=SlotRepo()
-    private var _vCList= MutableLiveData<List<Session>>();
-    var vCList:LiveData<List<Session>> = _vCList;
+    var repo: SlotFeed = SlotRepo()
+    private var _vCList = MutableLiveData<List<Session>>();
+    var vCList: LiveData<List<Session>> = _vCList;
 
-    fun getFeed(pincode:String,data: String){
-         viewModelScope.launch {
-             repo.getFeed(pincode,data).let {
-                 _vCList.postValue(it.body()?.sessions)
-             }
-         }
+    fun getFeed(pincode: String, data: String) {
+        viewModelScope.launch {
+            repo.getFeed(pincode, data).let {
+                _vCList.postValue(it.body()?.sessions)
+            }
+        }
     }
 }

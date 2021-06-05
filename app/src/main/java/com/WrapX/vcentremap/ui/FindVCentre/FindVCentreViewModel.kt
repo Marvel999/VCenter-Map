@@ -14,43 +14,43 @@ import kotlinx.coroutines.launch
 
 class FindVCentreViewModel(application: Application) : AndroidViewModel(application) {
 
-    var dataBasevaccinationCentreList:LiveData<List<VaccinationCentre>>
-    private val repositor:VacinnationCentreRepository
-    private val getdata= GetVCentre()
-    private var _vCList=MutableLiveData<ArrayList<VCentre>>();
-     var vCList:LiveData<ArrayList<VCentre>> = _vCList;
+    var dataBasevaccinationCentreList: LiveData<List<VaccinationCentre>>
+    private val repositor: VacinnationCentreRepository
+    private val getdata = GetVCentre()
+    private var _vCList = MutableLiveData<ArrayList<VCentre>>()
+    var vCList: LiveData<ArrayList<VCentre>> = _vCList
+
     init {
-        val vaccinationDao:VaccinationDao=VaccinationDataBase.getDatabase(application).vaccinationDao()
-        repositor=VacinnationCentreRepository(vaccinationDao)
-        dataBasevaccinationCentreList=repositor.readAllData
+        val vaccinationDao: VaccinationDao =
+            VaccinationDataBase.getDatabase(application).vaccinationDao()
+        repositor = VacinnationCentreRepository(vaccinationDao)
+        dataBasevaccinationCentreList = repositor.readAllData
     }
-    fun getData(){
+
+    fun getData() {
         viewModelScope.launch {
-          getdata.getdata {
-              _vCList.postValue(it)
-          }
+            getdata.getdata {
+                _vCList.postValue(it)
+            }
         }
     }
 
-    fun AddVaccinationCentre(vaccinationCentre: VaccinationCentre){
-        viewModelScope.launch(Dispatchers.IO){
+    fun AddVaccinationCentre(vaccinationCentre: VaccinationCentre) {
+        viewModelScope.launch(Dispatchers.IO) {
             repositor.addVaccinationCentre(vaccinationCentre)
         }
     }
 
-    fun getVaccinationcentreData(){
-        dataBasevaccinationCentreList=repositor.readAllData
+    fun getVaccinationcentreData() {
+        dataBasevaccinationCentreList = repositor.readAllData
     }
 
-     fun deleteTable(){
-         viewModelScope.launch {
-             repositor.deleteTable()
-         }
+    fun deleteTable() {
+        viewModelScope.launch {
+            repositor.deleteTable()
+        }
 
     }
-
-
-
 
 
 }

@@ -20,7 +20,7 @@ class UserSharedPreferences(val context: Context) {
     }
 
     var name:String?
-               get() = sharePreference.getString(userName,"Buddy").toString()
+               get() = sharePreference.getString(userName,"").toString()
                set(value) {  sharePreference.edit().putString(userName, value).apply()}
 
     var pincode:String?
