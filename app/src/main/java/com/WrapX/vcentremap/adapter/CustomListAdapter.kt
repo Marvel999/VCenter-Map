@@ -15,20 +15,15 @@ import com.WrapX.vcentremap.R
 import com.WrapX.vcentremap.repo.model.ListItem
 
 class CustomListAdapter(
-    val context: Context,
-    val onitemClick: onItemClick,
-    val items: ArrayList<ListItem>
+    private val context: Context,
+    private val onitemClick: onItemClick,
+    private val items: ArrayList<ListItem>
 ) : BaseAdapter() {
-    private class ViewHolder(row: View?) {
-        var txtName: TextView
-        var ivImage: ImageView
-        lateinit var mainlayout: ConstraintLayout
 
-        init {
-            this.txtName = row?.findViewById(R.id.firstLine) as TextView
-            this.ivImage = row?.findViewById(R.id.icon) as ImageView
-            this.mainlayout = row?.findViewById(R.id.Mainlayout) as ConstraintLayout
-        }
+    private class ViewHolder(row: View?) {
+        var txtName: TextView = row?.findViewById(R.id.firstLine) as TextView
+        var ivImage: ImageView = row?.findViewById(R.id.icon) as ImageView
+        var mainlayout: ConstraintLayout = row?.findViewById(R.id.Mainlayout) as ConstraintLayout
     }
 
     interface onItemClick {

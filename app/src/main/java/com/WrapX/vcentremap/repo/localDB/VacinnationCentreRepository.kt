@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 
 class VacinnationCentreRepository(private val vaccinationDao: VaccinationDao) {
 
-    val  readAllData:LiveData<List<VaccinationCentre>> =vaccinationDao.readAllData()
+    fun readAllData() = vaccinationDao.readAllData()
 
     suspend fun addVaccinationCentre(vaccinationCentre: VaccinationCentre){
         Log.e("Add","Data In Database")

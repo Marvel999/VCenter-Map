@@ -1,10 +1,8 @@
 package com.WrapX.vcentremap.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
@@ -13,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.WrapX.vcentremap.R
 import com.WrapX.vcentremap.repo.model.VCentre
 
-class VCentreAdapter(val onnavigationclick: (link: String) -> Unit) :
+class VCentreAdapter(private val onnavigationclick: (link: String) -> Unit) :
     ListAdapter<VCentre, VCentreAdapter.VCentreViewHolder>(
         object : DiffUtil.ItemCallback<VCentre>() {
 
@@ -24,8 +22,6 @@ class VCentreAdapter(val onnavigationclick: (link: String) -> Unit) :
             override fun areContentsTheSame(oldItem: VCentre, newItem: VCentre): Boolean {
                 return oldItem.toString() == oldItem.toString()
             }
-
-
         }
     ) {
 

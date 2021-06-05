@@ -23,11 +23,16 @@ class AppActivity : AppCompatActivity() {
 
         val navController = findNavController(R.id.nav_host_fragment_activity_app)
 
-        val appBarConfiguration = AppBarConfiguration(
+        AppBarConfiguration(
             setOf(
                 R.id.navigation_find_vcentre, R.id.navigation_vcentre, R.id.navigation_slot
             )
         )
         navView.setupWithNavController(navController)
     }
+
+    fun test(){
+
+    }
+
 }

@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
-
 class GetVCentre {
 
     suspend fun getdata(mlist: (list: ArrayList<VCentre>) -> Unit) = withContext(Dispatchers.IO) {

@@ -15,5 +15,5 @@ interface VaccinationDao {
     fun readAllData():LiveData<List<VaccinationCentre>>
 
     @Query("DELETE FROM vaccination_centre")
-   suspend fun deleteTable();
+    suspend fun deleteTable()
 }

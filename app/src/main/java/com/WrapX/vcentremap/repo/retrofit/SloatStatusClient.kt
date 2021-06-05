@@ -12,7 +12,6 @@ import java.io.IOException
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-
 object SloatStatusClient {
 
     class AcceptLanguageHeaderInterceptor : Interceptor {
@@ -27,27 +26,24 @@ object SloatStatusClient {
         }
 
         private val language: String
-            private get() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            get() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 LocaleList.getDefault().toLanguageTags()
             } else {
                 Locale.getDefault().getLanguage()
             }
     }
 
-    val okHttpBuilder = OkHttpClient.Builder()
+    private val okHttpBuilder = OkHttpClient.Builder()
         .readTimeout(10, TimeUnit.SECONDS)
         .connectTimeout(6, TimeUnit.SECONDS)
 
 
-    val retrofitBuilder = Retrofit.Builder()
-
+   private val retrofitBuilder = Retrofit.Builder()
         .baseUrl("https://cdn-api.co-vin.in/")
         .addConverterFactory(MoshiConverterFactory.create())
 
-
     val api = retrofitBuilder
         .client(okHttpBuilder.addNetworkInterceptor(AcceptLanguageHeaderInterceptor()).build())
-
         .build()
         .create(SlotStatus::class.java)
 

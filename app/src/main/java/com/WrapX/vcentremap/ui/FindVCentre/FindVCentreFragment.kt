@@ -8,63 +8,45 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.WrapX.vcentremap.InfoActivity
-import com.WrapX.vcentremap.PdfViewer
 import com.WrapX.vcentremap.SettingsActivity
 import com.WrapX.vcentremap.adapter.VCentreAdapter
 import com.WrapX.vcentremap.databinding.FragmentFindVcentreBinding
 import com.WrapX.vcentremap.repo.SharePrefrance.UserSharedPreferences
-import com.WrapX.vcentremap.repo.firebaseDatabase.GetVCentre
 import com.WrapX.vcentremap.repo.localDB.VaccinationCentre
 import com.WrapX.vcentremap.repo.model.VCentre
 import com.WrapX.vcentremap.utils.CalenderDate
-import com.WrapX.vcentremap.utils.CalenderDate.getDate
 import com.WrapX.vcentremap.utils.Utills
-import com.android.volley.Request
-import com.android.volley.RequestQueue
-import com.android.volley.Response
-import com.android.volley.VolleyError
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
-import com.google.firebase.database.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import org.json.JSONArray
-import org.json.JSONException
-import org.json.JSONObject
-import java.util.*
 import kotlin.collections.ArrayList
 
 
 class FindVCentreFragment : Fragment() {
 
     private lateinit var homeViewModel: FindVCentreViewModel
-    private lateinit var vaccinationCentreList: ArrayList<VCentre>
+    private val vaccinationCentreList: ArrayList<VCentre> = ArrayList()
     private lateinit var userSharedPreferences: UserSharedPreferences
     private var _binding: FragmentFindVcentreBinding? = null
 
     private val binding get() = _binding!!
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         homeViewModel =
             ViewModelProvider(this).get(FindVCentreViewModel::class.java)
         _binding = FragmentFindVcentreBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-        vaccinationCentreList = ArrayList()
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         userSharedPreferences = UserSharedPreferences(this.requireContext())
 
-
-        return root
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -75,14 +57,14 @@ class FindVCentreFragment : Fragment() {
         _binding?.recyclerView?.layoutManager = LinearLayoutManager(context)
         _binding?.recyclerView?.adapter = adaptor
         _binding?.Loading?.visibility = View.VISIBLE
-        binding.header.userName.text = "Hey " + userSharedPreferences.name
+        binding.header.userName.text = "Hey  ${userSharedPreferences.name}"
 
         // observe data get from api
         homeViewModel.vCList.observe({ lifecycle }) {
             if (it.size > 0) {
                 homeViewModel.deleteTable()
                 for (iteam in it) {
-                    homeViewModel.AddVaccinationCentre(
+                    homeViewModel.addVaccinationCentre(
                         VaccinationCentre(
                             0,
                             iteam.vCName,
@@ -99,9 +81,9 @@ class FindVCentreFragment : Fragment() {
         }
 
         // observe the list from database
-        homeViewModel.dataBasevaccinationCentreList.observe({ lifecycle }) {
-            var pincode = userSharedPreferences.pincode
-            if (it.size > 0 && userSharedPreferences.date.equals(CalenderDate.getDate())) {
+        homeViewModel.dataBasevaccinationCentreList.observe(viewLifecycleOwner) {
+            val pincode = userSharedPreferences.pincode
+            if (it.isNotEmpty() && userSharedPreferences.date.equals(CalenderDate.getDate())) {
                 for (iteam in it) {
                     if (iteam.Pincode == pincode) {
                         vaccinationCentreList.add(
@@ -137,14 +119,14 @@ class FindVCentreFragment : Fragment() {
 
         binding.header.imgSetting.setOnClickListener {
             val intent = Intent(activity, SettingsActivity::class.java)
-            startActivity(intent);
+            startActivity(intent)
         }
 
 
     }
 
     // get Api Call
-    fun apiCall() {
+    private fun apiCall() {
         if (!userSharedPreferences.date.equals(CalenderDate.getDate())) {
             homeViewModel.getData().let {
                 userSharedPreferences.date = CalenderDate.getDate()
@@ -153,8 +135,8 @@ class FindVCentreFragment : Fragment() {
     }
 
     // Open map link
-    fun openMap(mapLink: String) {
-        val intent = Intent(android.content.Intent.ACTION_VIEW, Uri.parse(mapLink))
+    private fun openMap(mapLink: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(mapLink))
         startActivity(intent)
 
     }

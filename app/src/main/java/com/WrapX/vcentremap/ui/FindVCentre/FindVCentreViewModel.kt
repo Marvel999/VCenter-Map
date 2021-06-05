@@ -24,7 +24,7 @@ class FindVCentreViewModel(application: Application) : AndroidViewModel(applicat
         val vaccinationDao: VaccinationDao =
             VaccinationDataBase.getDatabase(application).vaccinationDao()
         repositor = VacinnationCentreRepository(vaccinationDao)
-        dataBasevaccinationCentreList = repositor.readAllData
+        dataBasevaccinationCentreList = repositor.readAllData()
     }
 
     fun getData() {
@@ -35,21 +35,20 @@ class FindVCentreViewModel(application: Application) : AndroidViewModel(applicat
         }
     }
 
-    fun AddVaccinationCentre(vaccinationCentre: VaccinationCentre) {
+    fun addVaccinationCentre(vaccinationCentre: VaccinationCentre) {
         viewModelScope.launch(Dispatchers.IO) {
             repositor.addVaccinationCentre(vaccinationCentre)
         }
     }
 
-    fun getVaccinationcentreData() {
-        dataBasevaccinationCentreList = repositor.readAllData
+     fun getVaccinationcentreData() {
+        dataBasevaccinationCentreList = repositor.readAllData()
     }
 
     fun deleteTable() {
         viewModelScope.launch {
             repositor.deleteTable()
         }
-
     }
 
 

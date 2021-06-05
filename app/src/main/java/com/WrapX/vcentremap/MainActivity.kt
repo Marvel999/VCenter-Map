@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         //use string resource R.
         //Always relative name , Boolean isLogin
         if (userSharedPreferences.name == "Buddy")
-        navController.navigate(R.id.loginFragment)
+            navController.navigate(R.id.loginFragment)
         else{
             navController.navigate(R.id.pinCodeFragment)
         }

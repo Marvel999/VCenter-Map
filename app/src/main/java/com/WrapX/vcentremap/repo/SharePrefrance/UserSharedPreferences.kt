@@ -12,15 +12,15 @@ class UserSharedPreferences(val context: Context) {
     val year = c.get(Calendar.YEAR)
     val month = c.get(Calendar.MONTH)
     val day = c.get(Calendar.DAY_OF_MONTH)
-    private val userName="NAME";
-    private val areaPinCode="PINCODE";
-    private val dateMinOne="DATE";
+    private val userName="NAME"
+    private val areaPinCode="PINCODE"
+    private val dateMinOne="DATE"
     init {
         sharePreference = context.getSharedPreferences(sharePreferenceName, Context.MODE_PRIVATE)
     }
 
     var name:String?
-               get() = sharePreference.getString(userName,"").toString()
+               get() = sharePreference.getString(userName,"Buddy").toString()
                set(value) {  sharePreference.edit().putString(userName, value).apply()}
 
     var pincode:String?

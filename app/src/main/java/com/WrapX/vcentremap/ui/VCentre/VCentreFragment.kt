@@ -5,24 +5,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.WrapX.vcentremap.InfoActivity
 import com.WrapX.vcentremap.PdfViewer
 import com.WrapX.vcentremap.SettingsActivity
 import com.WrapX.vcentremap.adapter.VCentrePdfAdapter
-import com.WrapX.vcentremap.databinding.FragmentFindVcentreBinding
 import com.WrapX.vcentremap.databinding.FragmentVcentreBinding
 import com.WrapX.vcentremap.repo.SharePrefrance.UserSharedPreferences
 import com.WrapX.vcentremap.repo.model.VCentrePdf
 
 class VCentreFragment : Fragment() {
 
-    private lateinit var datalist: ArrayList<VCentrePdf>
+    private var datalist: ArrayList<VCentrePdf> = ArrayList()
     private lateinit var vCentrePdfAdapter: VCentrePdfAdapter
 
     private var _binding: FragmentVcentreBinding? = null
@@ -33,21 +27,15 @@ class VCentreFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
+    ): View{
         _binding = FragmentVcentreBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-        datalist = ArrayList()
-
-
-
-        return root
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val userSharedPreferences = UserSharedPreferences(requireContext())
-        binding.header.userName.text = "Hey " + userSharedPreferences.name
+        binding.header.userName.text = "Hey ${userSharedPreferences.name}"
 
         binding.header.imgSetting.setOnClickListener {
             val intent = Intent(activity, SettingsActivity::class.java)
@@ -64,7 +52,7 @@ class VCentreFragment : Fragment() {
 
     }
 
-    fun addDataList() {
+    private fun addDataList() {
         datalist.add(
             VCentrePdf(
                 "Goa",
@@ -188,7 +176,7 @@ class VCentreFragment : Fragment() {
 
     }
 
-    fun openPdf(link: String) {
+    private fun openPdf(link: String) {
         val intent = Intent(activity, PdfViewer::class.java)
         intent.putExtra("link", link)
         startActivity(intent)

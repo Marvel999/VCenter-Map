@@ -13,6 +13,7 @@ import androidx.annotation.RequiresApi
 import com.google.android.material.snackbar.Snackbar
 
 object Utills {
+
     fun showSnackBar(activity: Activity, message: String, action: String? = null,
                      actionListener: View.OnClickListener? = null, duration: Int = Snackbar.LENGTH_SHORT) {
         val snackBar = Snackbar.make(activity.findViewById(R.id.content), message, duration)

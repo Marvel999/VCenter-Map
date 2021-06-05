@@ -16,7 +16,7 @@ class SlotAdapter : ListAdapter<SlotData, SlotAdapter.SlotViewHolder>(
 
     object : DiffUtil.ItemCallback<SlotData>() {
         override fun areItemsTheSame(oldItem: SlotData, newItem: SlotData): Boolean {
-            return oldItem == newItem;
+            return oldItem == newItem
         }
 
         override fun areContentsTheSame(oldItem: SlotData, newItem: SlotData): Boolean {
@@ -25,7 +25,6 @@ class SlotAdapter : ListAdapter<SlotData, SlotAdapter.SlotViewHolder>(
 
     }
 ) {
-
 
     inner class SlotViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -42,16 +41,16 @@ class SlotAdapter : ListAdapter<SlotData, SlotAdapter.SlotViewHolder>(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SlotAdapter.SlotViewHolder {
-        val inflater = LayoutInflater.from(parent.context);
-        val view = inflater.inflate(R.layout.veccination_slot_layout, parent, false);
+        val inflater = LayoutInflater.from(parent.context)
+        val view = inflater.inflate(R.layout.veccination_slot_layout, parent, false)
         val root = SlotViewHolder(
             view
         )
-        return root;
+        return root
     }
 
     override fun onBindViewHolder(holder: SlotViewHolder, position: Int) {
-        val slotinf = getItem(position);
+        val slotinf = getItem(position)
         holder.vCentreName.text = slotinf.vCName
         holder.vCentreAddress.text = slotinf.vCAddress
         holder.vaccination.text = slotinf.vaccineName

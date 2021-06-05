@@ -40,7 +40,7 @@ class FindSlotFragment : Fragment() {
 
     private var pinCode: String? = ""
     private var date: String? = null
-    private lateinit var slotDatalist: ArrayList<SlotData>
+    private var slotDatalist: ArrayList<SlotData> = ArrayList()
     private lateinit var slotAdapter: SlotAdapter
 
 
@@ -56,15 +56,19 @@ class FindSlotFragment : Fragment() {
     ): View? {
 
         _binding = FindSlotFragmentBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-        slotDatalist = ArrayList()
-        return root
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this).get(FindSlotViewModel::class.java)
+
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(FindSlotViewModel::class.java)
 
 
         _binding?.noResultFirst?.Mainlayout?.visibility = View.VISIBLE

@@ -1,6 +1,5 @@
 package com.WrapX.vcentremap.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,39 +15,26 @@ class VCentrePdfAdapter(val onReadClicked: (link: String) -> Unit) :
     ListAdapter<VCentrePdf, VCentrePdfAdapter.VCentrePdfViewHolder>(
 
         object : DiffUtil.ItemCallback<VCentrePdf>() {
-            override fun areItemsTheSame(oldItem: VCentrePdf, newItem: VCentrePdf): Boolean {
-                return oldItem == newItem
-            }
+            override fun areItemsTheSame(oldItem: VCentrePdf, newItem: VCentrePdf) = oldItem == newItem
 
-            override fun areContentsTheSame(oldItem: VCentrePdf, newItem: VCentrePdf): Boolean {
-
-                return oldItem.toString() == newItem.toString()
-            }
-
+            override fun areContentsTheSame(oldItem: VCentrePdf, newItem: VCentrePdf) = oldItem.toString() == newItem.toString()
         }
     ) {
 
-
     inner class VCentrePdfViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
         val stateTv = itemView.findViewById<TextView>(R.id.vState)
         val readBtn = itemView.findViewById<Button>(R.id.read_btn)
 
     }
-
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): VCentrePdfAdapter.VCentrePdfViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.pdf_rv_layout, parent, false);
-        val root = VCentrePdfViewHolder(
-            view
-        )
-        return root;
+        val view = inflater.inflate(R.layout.pdf_rv_layout, parent, false)
+        return VCentrePdfViewHolder(view)
     }
-
 
     override fun onBindViewHolder(holder: VCentrePdfViewHolder, position: Int) {
         val vCentrePdf = getItem(position)

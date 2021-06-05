@@ -19,6 +19,9 @@ class PinCodeFragment : Fragment() {
 
     private var _viewBinding: PinCodeFragmentBinding? = null
     private val viewBinding get() = _viewBinding!!
+    companion object {
+        private const val DEFAULT_PINCODE = "110001"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,8 +29,7 @@ class PinCodeFragment : Fragment() {
     ): View {
         _viewBinding = PinCodeFragmentBinding.inflate(inflater, container, false)
         val root: View = viewBinding.root
-
-        return root;
+        return root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -36,12 +38,12 @@ class PinCodeFragment : Fragment() {
         viewBinding.include.userName.text = "Hey ${userSharedPreferences.name}"
         val pincode = userSharedPreferences.pincode.toString()
 
-        if (!pincode.equals("110001"))
+        if (pincode != DEFAULT_PINCODE)
             viewBinding.edPincode.setText(userSharedPreferences.pincode.toString())
 
         viewBinding.findBtn.setOnClickListener {
             val pincode = viewBinding.edPincode.text.toString()
-            if (pincodeValidation(pincode = pincode)) {
+            if (pincodeValidation(pincode)) {
                 userSharedPreferences.pincode = pincode
                 val intent = Intent(requireActivity(), AppActivity::class.java)
                 startActivity(intent)
@@ -51,8 +53,7 @@ class PinCodeFragment : Fragment() {
         }
     }
 
-    fun pincodeValidation(pincode: String) = !(pincode.isEmpty() && pincode.length < 0)
-
+    private fun pincodeValidation(pincode: String) = (pincode.isNotEmpty() && pincode.length == 6)
 
     override fun onDestroy() {
         super.onDestroy()
