@@ -71,8 +71,8 @@ class SettingsActivity : AppCompatActivity(), CustomListAdapter.onItemClick {
     fun shareApp(){
         val intent = Intent(Intent.ACTION_SEND);
         intent.setType("text/plain")
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Hey check out my app at: ")
-        intent.putExtra(Intent.EXTRA_TEXT, "Hey check out my app at: ")
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Hey check out my app at: https://github.com/Marvel999/VCenter-Map/raw/master/app/release/app-release.apk")
+        intent.putExtra(Intent.EXTRA_TEXT, "Hey check out my app at: https://github.com/Marvel999/VCenter-Map/raw/master/app/release/app-release.apk")
         startActivity(Intent.createChooser(intent, "choose one"))
     }
 
