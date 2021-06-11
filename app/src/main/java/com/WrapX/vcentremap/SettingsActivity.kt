@@ -35,8 +35,7 @@ class SettingsActivity : AppCompatActivity(), CustomListAdapter.onItemClick {
         backBtn=findViewById(R.id.back_btn)
         activityTitle=findViewById(R.id.title)
         stringArray= ArrayList()
-        stringArray.add(ListItem("Share our App with your friends",R.drawable.ic_share))
-        stringArray.add(ListItem("Rating us on Google Play Store",R.drawable.ic_rating))
+        stringArray.add(ListItem("Share VCentre Map with your friends",R.drawable.ic_share))
         stringArray.add(ListItem("Feedback & Support",R.drawable.ic_feedback))
         stringArray.add(ListItem("Logout",R.drawable.ic_logout))
 
@@ -72,8 +71,8 @@ class SettingsActivity : AppCompatActivity(), CustomListAdapter.onItemClick {
     fun shareApp(){
         val intent = Intent(Intent.ACTION_SEND);
         intent.setType("text/plain")
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Hey check out my app at: https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID)
-        intent.putExtra(Intent.EXTRA_TEXT, "Hey check out my app at: https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID)
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Hey check out my app at: ")
+        intent.putExtra(Intent.EXTRA_TEXT, "Hey check out my app at: ")
         startActivity(Intent.createChooser(intent, "choose one"))
     }
 

@@ -13,9 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VCentreMap">
-        <activity android:name=".SettingsActivity"></activity>
-        <activity android:name=".InfoActivity" />
-        <activity android:name=".PdfViewer" />
+        <activity android:name=".SettingsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".InfoActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PdfViewer"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".AppActivity"
             android:label="@string/title_activity_app"
