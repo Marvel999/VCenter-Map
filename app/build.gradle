@@ -9,14 +9,7 @@ plugins {
 }
 
 android {
-    signingConfigs {
-        release {
-            storeFile file('D:\\Android_Project\\VCentre Map\\vMapAppKey.jks')
-            storePassword 'Manish@999'
-            keyPassword 'Manish@999'
-            keyAlias 'key0'
-        }
-    }
+
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
